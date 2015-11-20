@@ -1,116 +1,549 @@
 <!doctype html>
 <html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>JavaScript: The New Parts by @rjanardan</title>
+	<meta name="description" content="An introduction to ES6 new features">
+	<meta name="author" content="Janardan Revuru">
 
-	<head>
-		<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<title>JavaScript: The New Parts by @rjanardan</title>
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+	<link rel="stylesheet" href="css/fullscreen-img.css">
 
-		<meta name="description" content="An introduction to ES6 new features">
-		<meta name="author" content="Janardan Revuru">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+	  document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/custom.css">
-		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
-		<link rel="stylesheet" href="css/fullscreen-img.css">
-
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
-
-		<!--[if lt IE 9]>
+	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-	</head>
+  </head>
+  <body>
+    <div class="reveal">
+	  <div class="slides">
+        <!-- Introduction and objective -->
 
-	<body>
+		<section style="background: rgba(255, 255, 255, .00);">
+          <div style="position:relative;width:auto;margin: 0px auto auto auto;background:rgba(255, 255, 255, .02)">
+            <h2 style="margin-bottom: 0px;padding-left:20px;color: rgb(0, 0, 0 );">JavaScript: The New Parts</h2>
+            <br>
+            <h1>ES6</h1>
+            <br>
+            <h3 class="inverted"><span style="text-transform: lowercase;color: rgb(0, 0, 0);">By @rjanardan</span></h3>
 
-            <div class="reveal">
-            
-			<div class="slides">
-				<section fullscreen-size="contain" fullscreen-img="img/js-logo.jpg" style="background: rgba(255, 255, 255, .00);">
-                                  <div style="position:relative;width:auto;margin: 0px auto auto auto;background:rgba(255, 255, 255, .02)">
-                                    <h1 style="margin-bottom: 0px;padding-left:20px;color: rgb(0, 0, 0 );">JavaScript: The New Parts</h1>
-                                    <h3 class="inverted"><span style="text-transform: lowercase;color: rgb(0, 0, 0);">By @rjanardan</span></h3>
-                                  </div>
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPad|iPod|Android)/i ) )
-						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
-				</section>
-                                <!-- img from http://pixabay.com/en/black-business-computer-computing-18295/-->
-				<section fullscreen-img="img/floppy.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
-                                  <h2 style="position:absolute;left:100px;bottom:-30px;text-transform:none;">Ecma International</h2>
-				</section>
-				<section fullscreen-img="img/snail.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .80);">
-					<h1>ECMAScript</h1>
-                                        <ul>
-					  <li>3 - 1999</li>
-					  <li>5 - 2009</li>
-					  <li>6 - 2015</li>
-					  <li class="fragment">2015 - 2015</li>
-					</ul>
-				</section>
-				<section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .00);">
-				</section>
-				<section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .80);">
-                                  <h1>CopyScript</h1>
-                                        <ul >
-					  <li>CoffeeScript - arrow functions</li>
-					  <li>Python - Generators</li>
-					  <li>Lisp - Destructuring</li>
-					  <li>C - const/block scope</li>
-					  <li>E - template strings</li>
-					</ul>
-				</section>
+          </div>
+		  <script>
+			// Delicously hacky. Look away.
+			if( navigator.userAgent.match( /(iPad|iPod|Android)/i ) )
+			document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+		  </script>
+		</section>
 
-				<section   style="background: rgba(255, 255, 255, .00);">
-                                  <h1>Plan</h1>
-                                  <ul>
-                                    <li>The Shimmables</li>
-                                    <li>The Transpilables</li>
-                                    <li>The Intractable</li>
-                                  </ul>
-				</section>
-				<section   style="background: rgba(255, 255, 255, .00);">
-<p style="margin-top:192px;font-size: 450%;font-family: monospace;background: white;" class="">&lt;script&gt;</p>
-				</section>
-				<section style="background: rgba(255, 255, 255, .90);">
-<p><a href='https://github.com/paulmillr/es6-shim/'>es6-shim by Paul Miller</a></p>
-<ul class=''>
-  <li>String.prototype.contains()</li>
-  <li>Promise()</li>
-  <li>Set()</li>
-  <li>Map()</li>
-  <li>Array.from()</li>
-  <li>Number.isNaN()</li>
-  <li>Object.is()</li>
-  <li>String.prototype.codePointAt()</li>
-</ul>
+		<section>
+          <h2>About Me</h2>
+          <ul>
+            <li>Open Source Enthusiast<span class="fragment">, not Microsoft hater!</span></li>
+            <li>love.js</li>
+            <li>Author & Speaker</li>
+            <div class="fragment">
+            <li>Working @ Hewlett Packard Enterprise</li>
+            <img src="img/js-hpe.png" style="background:none; border:none; box-shadow:none;"></li>
+            </div>
+          </ul>
+		</section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2>Audience</h2>
+          <ul>
+            <li>Web developers</li>
+            <li>Students</li>
+            <li>Technology enthusiasts</li>
+          </ul>
+          </br></br>
+          <div class="fragment">
+          <h2>Objective</h2>
+          <ul>
+            <li>Understanding of why & who</li>
+            <li>Not just syntax</li>
+            <li>Trends and evolution</li>
+          </ul>
+          </div>
+		</section>
+
+		<section   style="background: rgba(255, 255, 255, .00);">
+          <h2>Agenda</h2>
+          <ul>
+            <li><b>Past, present and future</b></li>
+            <li>What's special about this version?</li>
+            <li>New Features</li>
+            <li>Current support</li>
+          </ul>
+		</section>
+
+		<section fullscreen-img="img/js-brendan.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+		</section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2 style="position:center; bottom:-30px;text-transform:none;">Browser wars</h2>
+          <img src="img/js-netscape-vs-ie.jpg">
+		</section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2 style="position:center; bottom:-30px;text-transform:none;">JavaScript Survival</h2>
+          <img src="img/js-baby-bahubali.jpg">
+		</section>
+
+		<section fullscreen-img="img/js-ecma-intl.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+          <h2 style="color: white;position:absolute;bottom:-10px;text-transform:none;">Standards Body</h2>
+		</section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2>Agenda</h2>
+          <ul>
+            <li>Past, present and future</li>
+            <li><b>What's special about this version?</b></li>
+            <li>New Features</li>
+            <li>Current support</li>
+          </ul>
+		</section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2>Names</h2>
+          <ul>
+            <li>ECMAScript.next</li>
+            <li>ECMAScript harmony</li>
+            <li>ES6</li>
+            <li>ECMAScript 2015</li>
+          </ul>
+		</section>
+
+		<section fullscreen-img="img/js-ecma-homepage.png" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+		</section>
+
+		<section fullscreen-img="img/js-github-tc39.png" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+		</section>
 
 
-				</section>
+		<section style="background: rgba(255, 255, 255, .00);">
+          <img width="50%" height="50%" src="img/ecmascript2015.jpg">
+          <h3>Goals</h3>
+          <ul>
+            <li>Complex applications</li>
+            <li>Libraries and frameworks</li>
+            <li>Code generators</li>
+          </ul>
+		</section>
 
-				<section>
-<button class='run'>Run</button>
+		<section   style="background: rgba(255, 255, 255, .00);">
+          <h2>Agenda</h2>
+          <ul>
+            <li>Past, present and future</li>
+            <li>What's special about this version?</li>
+            <li><b>New Features</b></li>
+            <li>Current support</li>
+          </ul>
+		</section>
+
+<!--
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h2>New Features</h2>
+          <table>
+            <tr>
+              <td style="width:33%">
+                  __proto__</br>
+                  Array APIs</br>
+                  Arrow functions</br>
+                  Block scoping</br>
+                  Classes</br>
+                  Default parameters</br>
+                  Destructuring</br>
+                  Enhanced object literals</br>
+                  Generators</br>
+                </td>
+                <td style="width:33%">
+                  Iterators</br>
+                  Maps</br>
+                  Math APIs</br>
+                  Modules</br>
+                  Module loaders</br>
+                  Object APIs</br>
+                  Promises</br>
+                  Proxies</br>
+                  Reflect API</br>
+                  RegEx APIs</br>
+                  Rest parameters</br>
+                </td>
+                <td style="width:33%">
+                  Sets</br>
+                  Spread operator</br>
+                  String APIs</br>
+                  Subclassable built-ins</br>
+                  Symbols</br>
+                  Tail calls</br>
+                  Template literals</br>
+                  Typed arrays</br>
+                  Unicode</br>
+                  Weakmaps</br>
+                  Weaksets</br>
+                </td>
+              </tr>
+          </table>
+		</section>
+-->
+        <section>
+          <h2>Categories of new features</h2>
+          <h3>1. Programmer conveniences</h3>
+          <h3>2. For Scalable Applications</h3>
+          <h3>3. For library builders</h3>
+        </section>
+
+		<section  fullscreen-img="img/js-arrow-3.jpg" fullscreen-size="contain" style="color: white;background: rgba(255, 255, 255, .00);">
+          <h3 style="color: white">1. Programmer Conveniences</h3>
+          <div class="fragment">
+            Array APIs</br>
+            String APIs</br>
+            Arrow Functions</br>
+          </div>
+          <p class="fragment" style="position: absolute; bottom:-30px">Can use shims/polyfills for API extensions</p>
+		</section>
+
+		<section>
+          <button class='run'>Run</button>
 <div class='ace'>
-
-var hasB = "abc".indexOf('b') > -1;
+var hasB = "osidays".indexOf('d') > -1;
 alert(hasB);
 </div>
-				</section>
+          <div>
+            <p>Presentation template from John K Paul @johnkpaul</p>
+          </div>
+        </section>
 
-				<section>
-<button class='run'>Run</button>
+
+		<section>
+		  <h2>String APIs - Examples</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 200%">
+String.raw``
+
+String.prototype.repeat()
+
+String.prototype.startWith()
+
+String.prototype.endsWith()
+		  </code></pre>
+        </section>
+		<section>
+          <button class='run'>Run</button>
 <div class='ace'>
+var a = [1, 2, 3].fill(44);
+alert(a);
+</div>
+        </section>
+
+		<section>
+		  <h2>Arrow function - Example</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 200%">
+//Without arrow function
+
+var std = function std(yr) {
+
+  return "ECMAScript" + yr;
+
+};
+
+
+//With arrow functions
+
+var std = yr => "ECMAScript"+yr;
+
+
+//Return an object
+
+let makept = (a, b) => ({ x:a, y:b});
+
+		  </code></pre>
+        </section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h3>2. For Scalable Applications</h3>
+            Block scoping</br>
+            Classes</br>
+            Modules</br>
+		</section>
+
+		<section>
+		  <h2>Scope - let</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 200%">
+for (let i = 0; i < 3; i++) {
+
+  console.log('iterator ' + i);
+
+}
+
+console.log('iterator ' + i++); // error
+
+		  </code></pre>
+        </section>
+
+		<section>
+		  <h2>Scope - const</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 200%">
+const version = 6;
+
+console.log(version);
+
+version = 7; // error
+		  </code></pre>
+        </section>
+
+		<section>
+		  <h2>Scope - const (block scope)</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 200%">
+{
+
+const version = 6;
+
+console.log(version);
+
+}
+
+version = 7; // error
+
+		  </code></pre>
+        </section>
+
+		<section style="background: rgba(255, 255, 255, .00);">
+          <h3>3. For library builders</h3>
+            Maps</br>
+            Sets</br>
+            Weakmaps</br>
+            Weaksets</br>
+		</section>
+
+<section>
+  <button class='run'>Run</button>
+  <div class='ace'>
+let set = new Set();
+set.add('a');
+set.add('b');
+set.add('c');
+set.add('b');
+
+alert(set.size);
+set.forEach(alert);
+  </div>
+</section>
+<section>
+  <button class='run'>Run</button>
+  <div class='ace'>
+var obj = {'key': 'val'};
+
+var map = new Map();
+map.set('key', 'val');
+
+alert('key' in obj);
+alert(map.has('key'));
+
+  </div>
+</section>
+
+		<section>
+          <h3>Much more...</h3>
+          <div style="float:left; width:33%;">
+            Math APIs</br>
+            Object APIs</br>
+            RegEx APIs</br>
+            Default Parameters</br>
+            Destructuring</br>
+            Enh. object literals</br>
+            Template literals</br>
+            Spread operator</br>
+            Rest parameters</br>
+          </div>
+          <div style="float:left; width:33%">
+            Iterators</br>
+            Generators</br>
+            Promises</br>
+            Tail calls</br>
+            Typed Arrays</br>
+            Unicode</br>
+            ...</br>
+          </div>
+          <div style="float:right; width=33%;">
+            ...</br>
+            __proto__</br>
+            Module Loaders</br>
+            Proxies</br>
+            Reflect API</br>
+            Subclassable built-ins</br>
+            Symbols</br>                  
+          </div>
+		</section>
+<section>
+   <button class='run'>Run</button>
+   <div class='ace'>
+var obj = {key: 'val'};
+var obj2 = {key2: 'val2'};
+var merged = Object.assign(obj, obj2);
+
+alert(merged.key);
+alert(merged.key2);
+  </div>
+</section>
+		<section   style="background: rgba(255, 255, 255, .00);">
+          <h2>Agenda</h2>
+          <ul>
+            <li>Past, present and future</li>
+            <li>What's special about this version?</li>
+            <li>New Features</li>
+            <li><b>Current support</b></li>
+          </ul>
+		</section>
+				<section>
+					<h2>ES6 Support</h2>
+					<table>
+						<thead>
+							<tr>
+                              <th>Environment</th>
+                              <th>Support</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							  <td>Microsoft Edge 13</td>
+                              <td>84%</td>
+                            </tr>
+                            <tr>
+							  <td>Google Chrome 46</td>
+                              <td>74%</td>
+                            </tr>
+                            <tr>
+							  <td>Mozilla Firefox 44</td>
+                              <td>74%</td>
+                            </tr>
+                            <tr>
+                              <td>Node 5.0</td>
+                              <td>59%</td>
+                            </tr>
+                            <tr>
+                              <td>Babel</td>
+                              <td>71%</td>
+                            </tr>
+                            <tr>
+                              <td>Traceur</td>
+                              <td>59%</td>
+							</tr>
+                            <tr>
+                              <td>Safari</td>
+                              <td>54%</td>
+                            </tr>
+                            <tr>
+                              <td>Node 4.0</td>
+                              <td>53%</td>
+                            </tr>
+						</tbody>
+					</table>
+                    <p><a href="http://kangax.github.io/compat-table/es6">http://kangax.github.io/compat-table/es6/</a>/</p>
+				</section>
+<section>
+  <h2>What you should do</h2>
+  <ul>
+    <li class="fragment">Try online at <a href="es6fiddle.net">es6fiddle.net</a></li>
+    <li class="fragment">Read the series in OSFY Magazine</li>
+    <li class="fragment">Follow TC39, contribute to ES7</li>
+    <li class="fragment">Learn from Babel ES6 to ES5</li>
+    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
+    <li class="fragment">Add a branch with an ES6 transpiler</li>
+    <li class="fragment">Learn about asm.js and WebAssembly @brendaneich</li>
+  </ul>
+</section>
+<!--
+<section fullscreen-img="img/js-crockford.png" fullscreen-size="contain">
+</section>
+-->
+<section  style="background: rgba(255, 255, 255, .8);">
+  <h1>Thank You</h1>
+  <h1>Questions?</h1>
+  <h3 class="inverted">By @rjanardan</h3>
+  <h3 class="inverted">8050780608</h3>
+</section>
+
+<section style="background: rgba(255, 255, 255, .60);">
+  <h3 class="inverted">Janardan Revuru</h3>
+  <hr>
+  <img src="img/janardan.jpg" width="40%" style="border:none;float:left;">
+  <h3 class="inverted"><span style="text-transform: lowercase;">@rjanardan</span></h3>
+  <h3 class="inverted"><span style="text-transform: lowercase;">janardan.revuru@gmail.com</span></h3>
+</section>
+
+<section  style="background: rgba(255, 255, 255, .8);">
+  <h1>More examples</h1>
+  <ul>
+    <li>Destructuring</li>
+    <li>Rest parameters</li>
+    <li>Promises</li>
+    <li>Template strings</li>
+    <li>Classes</li>
+    <li>Generators</li>
+  </ul>
+</section>
+
+		        <section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .80);">
+                  <h1>CopyScript</h1>
+                  <ul >
+			        <li>CoffeeScript - arrow functions</li>
+			        <li>Python - Generators</li>
+			        <li>Lisp - Destructuring</li>
+			        <li>C - const/block scope</li>
+			        <li>E - template strings</li>
+		          </ul>
+		        </section>
+
+<section>
+  <button class='run'>Run</button>
+  <div class='ace'>
+    var n = [1, 2, 3, 4]
+    .find(x => Object.is(x, 3));
+    alert(n);
+  </div>
+</section>
+<section>
+  <h4>destructuring</h4>
+  <button class='run'>Run</button>
+  <div class='ace'>
+    var arr = [1, 2, 3];
+    func(arr);
+
+    function func([fst, snd, thd]){
+    alert(fst);
+    alert(thd);
+    }
+  </div>
+</section>
+<section>
+  <h4>destructuring/rest params</h4>
+  <button class='run'>Run</button>
+  <div class='ace'>
+    function destructure(...args){
+    var [options, callback] = args;
+    alert(options.v);
+    alert(typeof callback);
+    }
+    var o = {v: true}
+    destructure(o, () => 1);
+  </div>
+</section>
+
+        <section>
+          <button class='run'>Run</button>
+          <div class='ace'>
 var p = new Promise(
   function(resolve, reject){
     setTimeout(resolve, 1000);
@@ -120,347 +553,178 @@ var p = new Promise(
 p.then(function(){
   alert('after 1 second');
 });
-</div>
-				</section>
+         </div>
+        </section>
 
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>var obj = {key: 'val'};
-var obj2 = {key2: 'val2'};
-var merged = Object.assign(obj, obj2);
 
-alert(merged.key);
-alert(merged.key2);
-</div>
-				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>
-let set = new Set();
-set.add('a');
-set.add('b');
-set.add('c');
-set.add('b');
-
-alert(set.size);
-set.forEach(alert);
-</div>
-				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>
-var obj = {'key': 'val'};
-
-var map = new Map();
-map.set('key', 'val');
-
-alert('key' in obj);
-alert(map.has('key'));
-
-</div>
-				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>
-var n = [1, 2, 3, 4]
-        .find(x => Object.is(x, 3));
-alert(n);
-</div>
-				</section>
-				<section style="background: rgba(255, 255, 255, .80);">
-                                  <h1>Try It Out</h1>
-                                        <ul >
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/map/basics">Map basics</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/map/get">Map get</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/map/set">Map set</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/set/basics">Set Basics</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/array-api/find">Array Find</a></li>
-					</ul>
-				</section>
-				<section style="background: rgba(255, 255, 255, .80);">
-                                  <h1>Transpilables</h1>
-                                        <ul >
-                                            <li>Babel</li>
-                                            <li>JSTransform</li>
-                                            <li>Traceur</li>
-					</ul>
-				</section>
-				<section class="react-approved">
-<h4>block scoped variables</h4>
-<button class='run'>Run</button>
-<div class='ace'>
-var arr = [1,2,3];
-var o = [];
-
-for(var i = 0; i&lt;arr.length;i++) {
- var val = arr[i];
- o.push(function(){ alert(val); });
-}
-
-o.forEach(function(func){ func(); });
-
-</div>
-				</section>
-				<section>
-<h4>block scoped variables</h4>
-<button class='run'>Run</button>
-<div class='ace'>
-  const x = 1;
-  x = 2;
-
-</div>
-				</section>
-				<section>
-<h4>arrow functions</h4>
-<button class='run'>Run</button>
-<div class='ace'>  var double = (x) => x * 2;
-  alert(double(10));
-
-/*
-  var alertLoc;
-  var obj = {
-    loc: 'Atlanta',
-    init: function(){
-      alertLoc = () => 
-        alert("We're in " + this.loc);
-    }
-  };
-  obj.init();
-  alertLoc();
-*/
-</div>
-				</section>
-				<section>
-<h4>destructuring</h4>
-<button class='run'>Run</button>
-<div class='ace'>
-var arr = [1, 2, 3];
-func(arr);
-
-function func([fst, snd, thd]){
-  alert(fst);
-  alert(thd);
-}
-</div>
-				</section>
-				<section>
-<h4>destructuring/rest params</h4>
-<button class='run'>Run</button>
-<div class='ace'>
-function destructure(...args){
-  var [options, callback] = args;
-  alert(options.v);
-  alert(typeof callback);
-}
-var o = {v: true}
-destructure(o, () => 1);
-</div>
-				</section>
-				<section>
-<h4>template strings</h4>
-<button class='run'>Run</button>
-<div class='ace'>
-var first = "John K."
-var last = "Paul";
-var t = `I'm ${first} ${last}!`;
-alert(t);
-</div>
-				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>function* inf(){
-  var i = 0;
-  while(true){
+<section>
+  <h4>template strings</h4>
+  <button class='run'>Run</button>
+  <div class='ace'>
+    var first = "John K."
+    var last = "Paul";
+    var t = `I'm ${first} ${last}!`;
+    alert(t);
+  </div>
+</section>
+<section>
+  <button class='run'>Run</button>
+  <div class='ace'>function* inf(){
+    var i = 0;
+    while(true){
     yield ++i;
-  }
-}
+    }
+    }
 
-for(var x of inf()){
-  alert(x);
-  if(x > 3) { break; }
-}
+    for(var x of inf()){
+    alert(x);
+    if(x > 3) { break; }
+    }
 
-</div>
-				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>class Greeter {
+  </div>
+</section>
+<section>
+  <button class='run'>Run</button>
+  <div class='ace'>class Greeter {
     constructor(message) {
-      this.message = message;
+    this.message = message;
     }
     greet() {
-      alert(this.message)
+    alert(this.message)
     }
-}
+    }
 
-var greeter = new Greeter('Hey');
-greeter.greet();
+    var greeter = new Greeter('Hey');
+    greeter.greet();
+  </div>
+</section>
+<section style="background: rgba(255, 255, 255, .80);">
+  <h1>Try It Out</h1>
+  <ul >
+    <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/arrow-functions/basics">Arrow Functions</a></li>
+    <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/rest/as-parameter">Rest Parameters</a></li>
+    <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/object">Destructuring Objects</a></li>
+    <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/defaults">Destructuring with default parameters</a></li>
+  </ul>
+</section>
+
+                
+		        <section style="background: rgba(255, 255, 255, .90);">
+                  <p><a href='https://github.com/paulmillr/es6-shim/'>es6-shim by Paul Miller</a></p>
+                  <ul class=''>
+                    <li>String.prototype.contains()</li>
+                    <li>Promise()</li>
+                    <li>Set()</li>
+                    <li>Map()</li>
+                    <li>Array.from()</li>
+                    <li>Number.isNaN()</li>
+                    <li>Object.is()</li>
+                    <li>String.prototype.codePointAt()</li>
+                  </ul>
+		        </section>
 </div>
-				</section>
-				<section style="background: rgba(255, 255, 255, .80);">
-                                  <h1>Try It Out</h1>
-                                        <ul >
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/arrow-functions/basics">Arrow Functions</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/rest/as-parameter">Rest Parameters</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/object">Destructuring Objects</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/defaults">Destructuring with default parameters</a></li>
-					</ul>
-				</section>
-				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
-				</section>
-<!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script src="js/traceur.js"></script>
+<script src="lib/task.js"></script>
+<script src="js/ace/ace.js"></script>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/browser.js"></script>
+<script>
 
-				</section>
-				<section fullscreen-size="contain" fullscreen-img="img/cube.gif" >
-<div class="fragment" style="background: rgba(255, 255, 255, .80);">
-					<h2>The intractable</h2>
-                                        <ul>
-                                          <li>Weak Maps</li>
-                                          <li>Proxies</li>
-                                          <li>Tail call optimization</li>
-                                        </ul>
-</div>
-
-				</section>
-				<section fullscreen-size="contain" fullscreen-img="img/iceberg.jpg" style="background: rgba(255, 255, 255, .00);">
-				</section>
-				<section fullscreen-img="img/iceberg.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .50);">
-					<h1>ES6</h1>
-<a href="http://kangax.github.io/compat-table/es6/"><img width="600" src="img/compat.png"></a>
-				</section>
-                                <section  style="background: rgba(255, 255, 255, .8);">
-
-                                  <h2>What you should do</h2>
-                                  <ul>
-                                    <li class="fragment">Add es6-shim</li>
-                                    <!--<li class="fragment">Play around in the Babel repl</li>-->
-                                    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
-                                    <li class="fragment"><a href='http://ariya.ofilabs.com/'>Read Ariya Hidayat</a></li>
-                                    <li class="fragment"><a href='http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/'>Read Addy Osmani</a></li>
-                                    <li class="fragment">Add a branch with an ES6 transpiler</li>
-                                  </ul>
-				</section>
-                                <section fullscreen-size="contain" fullscreen-img="img/allthethings.jpg" style="background: rgba(255, 255, 255, .0);">
-				</section>
-				<section style="background: rgba(255, 255, 255, .60);">
-					<h3 class="inverted">Janardan Revuru</h3>
-                                        <hr>
-                                        <img src="img/janardan.jpg" width="40%" style="border:none;float:left;">
-                                        <h3 class="inverted"><span style="text-transform: lowercase;">@rjanardan</span></h3>
-                                        <h3 class="inverted"><span style="text-transform: lowercase;">janardan.revuru@gmail.com</span></h3>
-                                        <a href="http://twitter.com/getinrhythm"><img src="img/logo.png" class="fragment" style="border:none;"></a>
-                                        
-				</section>
-				<section  style="background: rgba(255, 255, 255, .8);">
-					<h1>Thank You</h1>
-					<h1>Questions?</h1>
-					<h3 class="inverted">By @rjanardan</h3>
-				</section>
-                        </div>
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
-		<script src="js/traceur.js"></script>
-		<script src="lib/task.js"></script>
-		<script src="js/ace/ace.js"></script>
-		<script src="js/jquery-1.9.1.js"></script>
-		<script src="js/browser.js"></script>
-                <script>
-
-                </script>
+</script>
 
 <!--
-explain what node has and why it's so easy
-green eyes of jealousy
+    explain what node has and why it's so easy
+    green eyes of jealousy
 
-explain some of es6 itself and what makes it so awesome
+    explain some of es6 itself and what makes it so awesome
 
-what is traceur, what's hapepning
+    what is traceur, what's hapepning
 
-grunt-traceur
-es6ify
+    grunt-traceur
+    es6ify
 
-performance concerns weigned between everything else
-try catch performance
-http://square.github.io/es6-module-transpiler/
-http://facebook.github.io/regenerator/
-https://github.com/paulmillr/es6-shim/
--->
-		<script>
+    performance concerns weigned between everything else
+    try catch performance
+    http://square.github.io/es6-module-transpiler/
+    http://facebook.github.io/regenerator/
+    https://github.com/paulmillr/es6-shim/
+  -->
+<script>
 
-			// Full list of configuration options available here:
-			// https: //github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				keyboard: true,
-				overview: true,
+  // Full list of configuration options available here:
+  // https: //github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  keyboard: true,
+  overview: true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+  theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+  transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                                        { src: 'plugin/fullscreen-img.js' }
-				]
-			});
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+  { src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+  { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  { src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+  { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+  { src: 'plugin/fullscreen-img.js' }
+  ]
+  });
 
-$('.run').click(function(){
-                               content = $(this).data('editor').getValue();
+  $('.run').click(function(){
+  content = $(this).data('editor').getValue();
 
-                               try{
-                                  babel.run(content);
-                               }catch(e){
-                                  alert(e.message);
-                               }
-                        });
-jQuery(function(){
+  try{
+  babel.run(content);
+  }catch(e){
+  alert(e.message);
+  }
+  });
+  jQuery(function(){
   jQuery('.ace').each(function(i, e){
 
   var editor = ace.edit(e);
-      editor.setTheme("ace/theme/chaos");
-      editor.getSession().setMode("ace/mode/javascript");
+  editor.setTheme("ace/theme/chaos");
+  editor.getSession().setMode("ace/mode/javascript");
   $(e).prev().data('editor', editor);
   });
-});
-setTimeout(function(){
-console.clear();
-}, 2000);
-		</script>
+  });
+  setTimeout(function(){
+  console.clear();
+  }, 2000);
+</script>
 <style type="text/css" media="screen">
-.run{
-position: absolute;
-right: 0px;
-z-index: 100000;
-font-size: 140%;
-}
-    .ace { 
-        top: 0;
-        left: 0;
-width:100%;height:576px;
-text-align:left;
-    }
+  .run{
+  position: absolute;
+  right: 0px;
+  z-index: 100000;
+  font-size: 140%;
+  }
+  .ace { 
+  top: 0;
+  left: 0;
+  width:100%;height:576px;
+  text-align:left;
+  }
 </style>
 
 <!--
 
-traceur
-grunt
-gulp
-brocolli
+    traceur
+    grunt
+    gulp
+    brocolli
 
--->
-	
+  -->
+<div class='footer'>
+  JavaScript: The New Parts by <a href="http://twitter.com/rjanardan">@rjanardan</a>
 
-                        <div class='footer'>
-                          JavaScript: The New Parts by <a href="http://twitter.com/rjanardan">@rjanardan</a>
-            
 </div>
 </body>
 </html>
