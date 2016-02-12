@@ -50,7 +50,7 @@
 		<section>
           <h2>About Me</h2>
           <ul>
-            <li>Open Source Enthusiast<span class="fragment">, not Microsoft hater!</span></li>
+            <li>Open Source Enthusiast</li>
             <li>love.js</li>
             <li>Author & Speaker</li>
             <div class="fragment">
@@ -84,45 +84,11 @@
             <li>Environments Support</li>
           </ul>
 		</section>
-
-<!--
-		<section   style="background: rgba(255, 255, 255, .00);">
-          <h2>Agenda</h2>
-          <ul>
-            <li><b>Past, present and future</b></li>
-            <li>What's special about this version?</li>
-            <li>New Features</li>
-            <li>Current support</li>
-          </ul>
-		</section>
-
-
-		<section fullscreen-img="img/js-brendan.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
-		</section>
-
-		<section style="background: rgba(255, 255, 255, .00);">
-          <h2 style="position:center; bottom:-30px;text-transform:none;">Browser wars</h2>
-          <img src="img/js-netscape-vs-ie.jpg">
-		</section>
-
-		<section style="background: rgba(255, 255, 255, .00);">
-          <h2 style="position:center; bottom:-30px;text-transform:none;">JavaScript Survival</h2>
-          <img src="img/js-baby-bahubali.jpg">
-		</section>
-        -->
         
 		<section fullscreen-img="img/js-ecma-intl.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
           <h2 style="color: white;position:absolute;bottom:-10px;text-transform:none;">Standards Body</h2>
 		</section>
 
-        <section   style="background: rgba(255, 255, 255, .00);">
-          <h2>Agenda</h2>
-          <ul>
-            <li>About ECMAScript 2015</li>
-            <li>New Features</li>
-            <li>Environments Support</li>
-          </ul>
-		</section>
 
 		<section style="background: rgba(255, 255, 255, .00);">
           <h2>About ECMAScript 2015</h2>
@@ -198,20 +164,32 @@
 		</section>
 -->
         <section>
-          <h2>Categories of new features</h2>
-          <h3>1. Programmer conveniences</h3>
-          <h3>2. For Scalable Applications</h3>
-          <h3>3. For library builders</h3>
+        <!-- not able to map new features to few commented themes, uncomment as you discover -->
+          <h2>Themes</h2>
+          <h4>Programmer conveniences</h4>
+          <h4>Reduce need for additional libraries</h4>
+          <!--<h4>For Scalable Applications</h4>-->
+          <h4>For library builders</h4>
+          <!--<h4>Fixing bad parts</h4>-->
+          <h4>High-level language features</h4>
+          <h4>Low level language features</h4>
+          <h4>Better readability and maintainability</h4>
+          <h4>Performance optimization</h4>
+          <h4>Functional programming</h4>
+          <h4>Object-oriented programming</h4>
         </section>
 
-		<section  fullscreen-img="img/js-arrow-3.jpg" fullscreen-size="contain" style="color: white;background: rgba(255, 255, 255, .00);">
-          <h3 style="color: white">1. Programmer Conveniences</h3>
-          <div class="fragment">
-            Array APIs</br>
-            String APIs</br>
-            Arrow Functions</br>
-          </div>
-          <p class="fragment" style="position: absolute; bottom:-30px">Can use shims/polyfills for API extensions</p>
+        <section>
+          <h2>Programmer conveniences</h2>
+          <p>arrow functions, array functions, string functions, for..of, function parameters, parameters with default values, variable parameters, destructuring, template strings</p>
+        </section>
+
+        <section>
+          <h2>Reduce need for additional libraries</h2>
+          <p>Math library, new data structures - Maps, Sets, WeakMaps, WeakSets</p>
+        </section>
+		<section>
+          <h1>Examples</h1>
 		</section>
 
 		<section>
@@ -228,7 +206,7 @@ alert(hasB);
 
 		<section>
 		  <h2>String APIs - Examples</h2>
-		  <pre><code data-trim contenteditable  style="font-size: 200%">
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
 String.raw``
 
 String.prototype.repeat()
@@ -241,14 +219,17 @@ String.prototype.endsWith()
 		<section>
           <button class='run'>Run</button>
 <div class='ace'>
-var a = [1, 2, 3].fill(44);
+let a = [10, 20, 30, 40, 50];
+alert(a.find(x => x > 30));
+a.fill(44);
 alert(a);
+
 </div>
         </section>
 
 		<section>
 		  <h2>Arrow function - Example</h2>
-		  <pre><code data-trim contenteditable  style="font-size: 200%">
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
 //Without arrow function
 
 var std = function std(yr) {
@@ -270,16 +251,19 @@ let makept = (a, b) => ({ x:a, y:b});
 		  </code></pre>
         </section>
 
-		<section style="background: rgba(255, 255, 255, .00);">
-          <h3>2. For Scalable Applications</h3>
-            Block scoping</br>
-            Classes</br>
-            Modules</br>
+		<section>
+		  <h2>Object Literals</h2>
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
+
+0b111 // 7 (decimal)
+              
+0b11+0o11 // 12 (3+9)
+		  </code></pre>
 		</section>
 
 		<section>
 		  <h2>Scope - let</h2>
-		  <pre><code data-trim contenteditable  style="font-size: 200%">
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
 for (let i = 0; i < 3; i++) {
 
   console.log('iterator ' + i);
@@ -293,7 +277,7 @@ console.log('iterator ' + i++); // error
 
 		<section>
 		  <h2>Scope - const</h2>
-		  <pre><code data-trim contenteditable  style="font-size: 200%">
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
 const version = 6;
 
 console.log(version);
@@ -304,7 +288,7 @@ version = 7; // error
 
 		<section>
 		  <h2>Scope - const (block scope)</h2>
-		  <pre><code data-trim contenteditable  style="font-size: 200%">
+		  <pre><code data-trim contenteditable  style="font-size: 150%">
 {
 
 const version = 6;
@@ -318,8 +302,25 @@ version = 7; // error
 		  </code></pre>
         </section>
 
+        <section>
+          <h2>Shorthand notation</h2>
+<pre><code data-trim contenteditable style="font-size: 150%">
+let employee = {
+
+  firstname: firstname,
+
+  lastname: lastname,
+
+  organization: organization,
+
+};
+
+let employee = {
+  firstname
+</pre></code>
+        </section>
 		<section style="background: rgba(255, 255, 255, .00);">
-          <h3>3. For library builders</h3>
+          <h3>Built-in data structures</h3>
             Maps</br>
             Sets</br>
             Weakmaps</br>
