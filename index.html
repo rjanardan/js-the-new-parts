@@ -35,7 +35,7 @@
           <div style="position:relative;width:auto;margin: 0px auto auto auto;background:rgba(255, 255, 255, .02)">
             <h2 style="margin-bottom: 0px;padding-left:20px;color: rgb(0, 0, 0 );">JavaScript: The New Parts</h2>
             <br>
-            <h1>ES6</h1>
+            <h1>ES6/ES7</h1>
             <br>
             <h3 class="inverted"><span style="text-transform: lowercase;color: rgb(0, 0, 0);">By @rjanardan</span></h3>
 
@@ -69,9 +69,8 @@
           <div class="fragment">
           <h2>Objective</h2>
           <ul>
-            <li>Understanding of why & who</li>
+            <li>Catup on new features</li>
             <li>Not just syntax</li>
-            <li>Future versions of JavaScript</li>
           </ul>
           </div>
 		</section>
@@ -227,6 +226,17 @@ alert(a);
 </div>
         </section>
 
+<section>
+  <h4>template strings</h4>
+  <button class='run'>Run</button>
+  <div class='ace'>
+    var first = "John K."
+    var last = "Paul";
+    var t = `I'm ${first} ${last}!`;
+    alert(t);
+  </div>
+</section>
+        
 		<section>
 		  <h2>Arrow function - Example</h2>
 		  <pre><code data-trim contenteditable  style="font-size: 150%">
@@ -303,23 +313,346 @@ version = 7; // error
         </section>
 
         <section>
-          <h2>Shorthand notation</h2>
-<pre><code data-trim contenteditable style="font-size: 150%">
+          <h2>Enhanced Object literals</h2>
+          <h3>Properties Shorthand notation</h3>
+<pre><code data-trim contenteditable style="font-size: 120%">
+
+let firstname = "Janardan",
+    
+  lastname = "Revuru",
+
+  organization = "HPE EG India R&D";
+
+
+
+
+let employee = {                       let employee = {
+                                      
+  firstname: firstname,                   firstname,
+                                      
+  lastname: lastname,                     lastname,
+                                      
+  organization: organization              organization
+                                      
+};                                    };
+                                         (new notation)
+
+</pre></code>
+        </section>
+
+        <section>
+          <h3>Shorthand notation (extension)</h3>
+<pre><code data-trim contenteditable style="font-size: 140%">          
 let employee = {
 
-  firstname: firstname,
+    firstname,
 
-  lastname: lastname,
+    lastname,
 
-  organization: organization,
+    org: organization,
+
+    location: "Mahadevapura"
+
+};  
+
+</pre></code>
+        </section>
+
+        <section>
+          <h3>Method shorthand</h3>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+let payroll = {
+
+  _employees: [],
+
+       print() {                       
+
+        console.log(JSON.stringify(employee));
+
+      }
+};
+
+payroll.print();
+</pre></code>
+        </section>
+        
+        <section>
+          <h3>Computed Property keys</h3>
+          <pre><code data-trim contenteditable style="font-size: 140%">
+let i = 0;
+              
+let std = "ecma";
+
+let fn = "print";
+
+let obj = {
+
+  ["js" + ++i]: i,
+
+  ["js" + "2"]: ++i, 
+
+  ["js" + new Date().getFullYear()]: 10,
+
+  [std]: 20,
+
+  [fn]: function() { console.log("hello!"); },
 
 };
 
-let employee = {
-  firstname
+          </pre></code>
+        </section>
+        
+        <section>
+          <h2>Number object extensions</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+ Number.isFinite(3); // true
+
+ Number.isFinite('3'); // false
+
+ isFinite('3'); // true
+
+ Number.EPSILON
+
+ (0.21+0.2) !== (0.41)
+
+ Number.MIN_SAFE_INTEGER
+
+ Number.MAX_SAFE_INTEGER
+
+ Number.isSafeInteger()
 </pre></code>
         </section>
-		<section style="background: rgba(255, 255, 255, .00);">
+        
+        <section>
+          <h2>Default Parameters</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+function fn(one, two, three) {
+
+  console.log(one, two, three);
+
+}
+
+fn(1);
+</pre></code>
+        </section>
+        
+        <section>
+          <h2>Default params (2)</h2>
+<pre><code data-trim contenteditable style="font-size: 120%">          
+function simple_interest(p, t, r) {
+
+  let time = t || 1;
+
+  let rate = r || 8;
+
+  let si = (p * time * rate)/100;
+
+  console.log("p =" + p + ", t = "+ time + 
+
+      ", r = "+rate + "; si = " + si);
+}
+
+simple_interest(1000, 5);
+
+simple_interest(1000, 2, undefined);
+
+simple_interest(1000, 2, null);
+
+simple_interest(1000, 2, 0);
+</pre></code>
+        </section>
+
+        <section>
+          <h2>ECMAScript Process Stages</h2>
+          <table cellpadding="10">
+            <tr><th>No</th><th>Stage</th><th>Purpose</th></tr>
+            <tr><td>0</td><td>Strawman</td><td>Input into specification</td></tr>
+            <tr><td>1</td><td>Proposal</td><td>Committee is considering it. Identify value, solution, potential challenges</td></tr>
+            <tr><td>2</td><td>Draft</td><td>Describe syntax, semantics and formal spec language</td></tr>
+            <tr><td>3</td><td>Candidate</td><td>Refine based on implementators and users</td></tr>
+            <tr><td>4</td><td>Finished</td><td>Ready for inclusion in coming version</td></tr>
+          </table>
+          <br><br>
+          <a href="https://tc39.github.io/process-document/">The TC39 Process</a>
+        </section>
+
+        <section>
+          <h2>ES2016/ES7</h2>
+          <p>Array.prototype.includes()</p>
+          <p>Exponentiation operator</p>
+
+        </section>
+
+        <section>
+          <h2>Upcoming features</h2>
+          <p>SIMD.js</p>
+          <p>Async functions</p>
+          <p>Object.values/Object.entries</p>
+          <p>String padding</p>
+          <pTrailing commas in function parameter lists and calls</p>
+          <p>Object.getOwnPropertyDescriptors</p>
+        </section>
+
+        <section>
+          <h2>Rest parameters</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+function add(...nums) {
+
+  var result = 0;
+
+  nums.forEach(function (num) {
+
+  result += num;
+
+  });
+
+  return result;
+
+}
+
+add(10, 20, 30, 50);
+</pre></code>
+        </section>
+
+        <section>
+          <h2>Number object extensions</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+function max(a, b, c) {
+
+    // code to find max of three numbers
+
+}
+
+let a = [10, 20, 30];
+
+max(...a); // = max(10, 20, 30)
+
+let b = [...a, 40, 50];
+
+</pre></code>
+        </section>
+
+        <section>
+          <h2>for..of iterator</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+ let arr = ["mon", "tue", "wed"];
+
+ for (let i in arr) {
+
+    console.log(i); //prints index
+
+ }
+
+ for (let i of arr) {
+
+     console.log(i); //prints values
+
+ }
+
+ for (let [i,v] of arr.entries()) {
+
+   console.log(i, ": ", v); // prints index, values
+
+}
+</pre></code>
+        </section>
+
+        <section>
+          <h2>Destructuring</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">          
+const distro = {
+
+  name: 'Linux Mint',
+
+  os_type: 'linux',
+
+  based_on: ['debian', 'ubuntu'],
+
+  origin: 'Ireland',
+
+  arch: ['i386', 'x86_64'],
+
+  popularity: 1
+
+};
+
+let { name: name, origin: origin } = distro;
+</pre></code>
+        </section>
+        
+        <section>
+          <h2>Destructuring Array</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">  
+let today = new Date();
+
+let UTCstring = today.toUTCString();
+
+let [, date, month, year] =    
+           today.toUTCString().split(" ");
+</pre></code>
+        </section>
+        <section>
+          <h2>Destructuring (2d array)</h2>
+<pre><code data-trim contenteditable style="font-size: 120%">  
+let matrix = [[1, 2, 3],[4, 5, 6],[7, 8, 9]];
+
+let [[a11,,],[,a22,],[,,a33]] = matrix;
+
+// swapping elements
+let [a, b] = [1, 2];
+
+[a, b] = [b, a];
+
+</pre></code>
+        </section>
+        <section>
+          <h2>Destructuring (iterator)</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">  
+const books = [
+
+  { t: "Eloquent JavaScript",
+
+    a: "Marijn"
+
+  },
+
+  { t: "Exploring ES6",
+
+    a: "Alex"
+
+  }];  
+
+for (let {t} of books) { 
+
+  console.log(t);
+
+}
+</pre></code>
+        </section>
+        <section>
+          <h2>Destructuring (fn params)</h2>
+<pre><code data-trim contenteditable style="font-size: 140%">  
+function get_rank({popularity: p}) {
+
+	return p;
+
+}
+
+const distro = {
+
+  name: 'Linux Mint',
+
+  os_type: 'linux',
+
+  popularity: 1
+
+};
+
+get_rank(distro);
+</pre></code>
+        </section>
+
+        <section style="background: rgba(255, 255, 255, .00);">
           <h3>Built-in data structures</h3>
             Maps</br>
             Sets</br>
@@ -360,12 +693,7 @@ alert(map.has('key'));
             Math APIs</br>
             Object APIs</br>
             RegEx APIs</br>
-            Default Parameters</br>
-            Destructuring</br>
-            Enh. object literals</br>
             Template literals</br>
-            Spread operator</br>
-            Rest parameters</br>
           </div>
           <div style="float:left; width:33%">
             Iterators</br>
@@ -386,75 +714,106 @@ alert(map.has('key'));
             Symbols</br>                  
           </div>
 		</section>
-<section>
-   <button class='run'>Run</button>
-   <div class='ace'>
+
+        <section>
+          <button class='run'>Run</button>
+          <div class='ace'>
+var p = new Promise(
+  function(resolve, reject){
+    setTimeout(resolve, 1000);
+  }
+);
+
+p.then(function(){
+  alert('after 1 second');
+});
+         </div>
+        </section>
+        
+        <section>
+          <button class='run'>Run</button>
+          <div class='ace'>
 var obj = {key: 'val'};
 var obj2 = {key2: 'val2'};
 var merged = Object.assign(obj, obj2);
 
 alert(merged.key);
 alert(merged.key2);
-  </div>
-</section>
-				<section>
-					<h2>ES6 Support</h2>
-					<table>
-						<thead>
-							<tr>
-                              <th>Environment</th>
-                              <th>Support</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							  <td>Microsoft Edge 13</td>
-                              <td>84%</td>
-                            </tr>
-                            <tr>
-							  <td>Google Chrome 46</td>
-                              <td>74%</td>
-                            </tr>
-                            <tr>
-							  <td>Mozilla Firefox 44</td>
-                              <td>74%</td>
-                            </tr>
-                            <tr>
-                              <td>Node 5.0</td>
-                              <td>59%</td>
-                            </tr>
-                            <tr>
-                              <td>Babel</td>
-                              <td>71%</td>
-                            </tr>
-                            <tr>
-                              <td>Traceur</td>
-                              <td>59%</td>
-							</tr>
-                            <tr>
-                              <td>Safari</td>
-                              <td>54%</td>
-                            </tr>
-                            <tr>
-                              <td>Node 4.0</td>
-                              <td>53%</td>
-                            </tr>
-						</tbody>
-					</table>
-                    <p><a href="http://kangax.github.io/compat-table/es6">http://kangax.github.io/compat-table/es6/</a>/</p>
-				</section>
+          </div>
+        </section>
 <section>
-  <h2>What you should do</h2>
-  <ul>
-    <li class="fragment">Try online at <a href="es6fiddle.net">es6fiddle.net</a></li>
-    <li class="fragment">Read the series in OSFY Magazine</li>
-    <li class="fragment">Follow TC39, contribute to ES7</li>
-    <li class="fragment">Learn from Babel ES6 to ES5</li>
-    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
-    <li class="fragment">Add a branch with an ES6 transpiler</li>
-    <li class="fragment">Learn about asm.js and WebAssembly @brendaneich</li>
-  </ul>
-</section>
+  <button class='run'>Run</button>
+  <div class='ace'>class Greeter {
+    constructor(message) {
+    this.message = message;
+    }
+    greet() {
+    alert(this.message)
+    }
+    }
+
+    var greeter = new Greeter('Hey');
+    greeter.greet();
+  </div>
+</section>        
+		<section>
+		  <h2>ES6 Support</h2>
+		  <table>
+			<thead>
+			  <tr>
+                <th>Environment</th>
+                <th>Support</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td>Microsoft Edge 13</td>
+                <td>84%</td>
+              </tr>
+              <tr>
+				<td>Google Chrome 46</td>
+                <td>74%</td>
+              </tr>
+              <tr>
+				<td>Mozilla Firefox 44</td>
+                <td>74%</td>
+              </tr>
+              <tr>
+                <td>Node 5.0</td>
+                <td>59%</td>
+              </tr>
+              <tr>
+                <td>Babel</td>
+                <td>71%</td>
+              </tr>
+              <tr>
+                <td>Traceur</td>
+                <td>59%</td>
+			  </tr>
+              <tr>
+                <td>Safari</td>
+                <td>54%</td>
+              </tr>
+              <tr>
+                <td>Node 4.0</td>
+                <td>53%</td>
+              </tr>
+			</tbody>
+		  </table>
+          <p><a href="http://kangax.github.io/compat-table/es6">http://kangax.github.io/compat-table/es6/</a></p>
+		</section>
+        <section>
+          <h2>What you should do</h2>
+          <ul>
+            <li class="fragment">Try online at <a href="es6fiddle.net">es6fiddle.net</a></li>
+            <li class="fragment">Read the series in OSFY Magazine</li>
+            <li class="fragment">Follow TC39, contribute to ES8</li>
+            <li class="fragment">Learn from Babel ES6 to ES5</li>
+            <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
+            <li class="fragment">Add a branch with an ES6 transpiler</li>
+            <li class="fragment">Learn about asm.js and WebAssembly @brendaneich</li>
+          </ul>
+        </section>
 <!--
 <section fullscreen-img="img/js-crockford.png" fullscreen-size="contain">
 </section>
@@ -532,32 +891,8 @@ alert(merged.key2);
   </div>
 </section>
 
-        <section>
-          <button class='run'>Run</button>
-          <div class='ace'>
-var p = new Promise(
-  function(resolve, reject){
-    setTimeout(resolve, 1000);
-  }
-);
-
-p.then(function(){
-  alert('after 1 second');
-});
-         </div>
-        </section>
 
 
-<section>
-  <h4>template strings</h4>
-  <button class='run'>Run</button>
-  <div class='ace'>
-    var first = "John K."
-    var last = "Paul";
-    var t = `I'm ${first} ${last}!`;
-    alert(t);
-  </div>
-</section>
 <section>
   <button class='run'>Run</button>
   <div class='ace'>function* inf(){
@@ -572,21 +907,6 @@ p.then(function(){
     if(x > 3) { break; }
     }
 
-  </div>
-</section>
-<section>
-  <button class='run'>Run</button>
-  <div class='ace'>class Greeter {
-    constructor(message) {
-    this.message = message;
-    }
-    greet() {
-    alert(this.message)
-    }
-    }
-
-    var greeter = new Greeter('Hey');
-    greeter.greet();
   </div>
 </section>
 <section style="background: rgba(255, 255, 255, .80);">
